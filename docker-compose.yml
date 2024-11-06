@@ -1,0 +1,93 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: app
+    depends_on:
+      - redis
+      - database
+    hostname: app
+    networks:
+      - travel2-network
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www/
+    working_dir: /var/www/
+    entrypoint: "bash /var/www/docker/app/entrypoint.sh"
+
+  app_nginx:
+    container_name: app_nginx
+    depends_on:
+      - app
+    image: nginx
+    networks:
+      - travel2-network
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www/
+      - type: bind
+        source: ./docker/app_nginx/conf.d
+        target: /etc/nginx/conf.d
+        read_only: true
+    working_dir: /var/www/
+
+  #Просмотр логов контейнеров в real-time
+  container_logs:
+    container_name: dozzle
+    environment:
+      DOZZLE_NO_ANALYTICS: "true"
+    image: amir20/dozzle:latest
+    networks:
+      - travel2-network
+    ports:
+      - "8010:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    build:
+      context: .
+      dockerfile: ./docker/redis/Dockerfile
+    container_name: redis
+    networks:
+      - travel2-network
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    volumes:
+      - ./docker/redis/config/redis.conf:/etc/redis/redis.conf
+
+  database:
+    image: 'postgres:13.10-alpine'
+    container_name: database
+    hostname: database
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: travel2_dbdata
+        target: /var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_USER=${DB_USERNAME}'
+      - 'POSTGRES_PASSWORD=${DB_PASSWORD}'
+      - 'POSTGRES_DB=${DB_DATABASE}'
+    ports:
+      - target: 5432
+        published: ${DB_PORT}
+    networks:
+      - travel2-network
+
+volumes:
+  travel2_dbdata:
+    driver: local
+
+networks: # Виртуальная сеть для объединения контейнеров
+  travel2-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 180.22.1.0/24
