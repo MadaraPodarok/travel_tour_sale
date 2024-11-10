@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransactionDetail extends Model
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $fillable = [
-        'transaction_id', 'username', 'nationality', 'is_visa', 'doe_passport'
+        'transaction_id', 'username', 'is_visa', 'passport'
     ];
 
     protected $hidden = [

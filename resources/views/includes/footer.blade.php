@@ -31,10 +31,10 @@
                     <div class="col-12 col-lg-3">
                         <h5>ПОДКЛЮЧАЙТЕСЬ</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#">Темангунг</a></li>
-                            <li><a href="#">Индонезия</a></li>
-                            <li><a href="#">0858-0313-2827</a></li>
-                            <li><a href="#">support@nomads.com</a></li>
+                            <li><a href="#">Уфа</a></li>
+                            <li><a href="#">Россия</a></li>
+                            <li><a href="#">8800-555-35-35</a></li>
+                            <li><a href="#">a.nikitin@mail.business.ru</a></li>
                         </ul>
                     </div>
                 </div>

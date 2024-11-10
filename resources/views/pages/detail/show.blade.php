@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Detail Travel')
+@section('title','Детали Тур путевок')
 
 @section('content')
 <main>
@@ -12,10 +12,10 @@
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                Туристические путевки
+                                <a href="{{route('detail_list')}}">Туристические путевки</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Подробности
+                                Данные путевки
                             </li>
                         </ol>
                     </nav>
@@ -30,17 +30,12 @@
                         </p>
                         @if($item->galleries->count())
                             <div class="gallery">
-                                <div class="xzoom-container">
-                                    <img src="{{ Storage::url($item->galleries->first()->image) }}"
-                                        class="xzoom" id="xzoom-default"
-                                        xoriginal="{{ Storage::url($item->galleries->first()->image) }}">
-                                </div>
                                 <div class="xzoom-thumbs">
                                     @foreach($item->galleries as $gallery)
 
                                         <a href="{{ Storage::url($gallery->image) }}">
                                             <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery"
-                                                width="128" xpreview="{{ Storage::url($gallery->image) }}">
+                                                width="128" xpreview="{{ Storage::url($gallery->image) }}" alt="">
                                         </a>
 
                                     @endforeach
@@ -54,24 +49,21 @@
 
                         <div class="features row">
                             <div class="col-md-4">
-                                <img src="{{ url('frontend/images/icon/ic_event.png') }}" alt=""
-                                    class="features-image">
+                                <img src="{{ url('images/icon/ic_event.png') }}" alt="" class="features-image">
                                 <div class="description">
                                     <h3>Рекомендуемое событие</h3>
                                     <p>{{$item->featured_event}}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 border-left">
-                                <img src="{{ url('frontend/images/icon/ic_language.png') }}"
-                                    alt="" class="features-image">
+                                <img src="{{ url('images/icon/ic_language.png') }}" alt="" class="features-image">
                                 <div class="description">
                                     <h3>Язык</h3>
                                     <p>{{$item->language}}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 border-left">
-                                <img src="{{ url('frontend/images/icon/ic_foods.png') }}" alt=""
-                                    class="features-image">
+                                <img src="{{ url('images/icon/ic_foods.png') }}" alt="" class="features-image">
                                 <div class="description">
                                     <h3>Продукты питания</h3>
                                     <p>{{$item->foods}}</p>
@@ -87,11 +79,11 @@
                     <div class="card card-details card-right">
                         <h2>Участники собираются</h2>
                         <div class="members my-2">
-                            <img src="/frontend/images/members/Mask Group 3.png" class="member-image mr-1" />
-                            <img src="/frontend/images/members/Mask Group 4.png" class="member-image mr-1" />
-                            <img src="/frontend/images/members/Mask Group 5.png" class="member-image mr-1" />
-                            <img src="/frontend/images/members/Mask Group 6.png" class="member-image mr-1" />
-                            <img src="/frontend/images/members/Group 6.png" class="member-image mr-1" />
+                            <img src="/images/members/Mask Group 3.png" class="member-image mr-1" />
+                            <img src="/images/members/Mask Group 4.png" class="member-image mr-1" />
+                            <img src="/images/members/Mask Group 5.png" class="member-image mr-1" />
+                            <img src="/images/members/Mask Group 6.png" class="member-image mr-1" />
+                            <img src="/images/members/Group 6.png" class="member-image mr-1" />
                         </div>
                         <hr>
                         <h2>Информация о поездке</h2>
@@ -105,10 +97,6 @@
                                 <td width="50%" class="text-right">{{$item->duration}}</td>
                             </tr>
                             <tr>
-                                <th width="50%">Тип</th>
-                                <td width="50%" class="text-right">{{$item->type}}</td>
-                            </tr>
-                            <tr>
                                 <th width="50%">Цена</th>
                                 <td width="50%" class="text-right">{{$item->price}},00 / Person</td>
                             </tr>
@@ -116,7 +104,7 @@
                     </div>
                     <div class="join-container">
                         @auth
-                            <form action="{{route('checkout_process', $item->id)}}" method="post">
+                            <form action="{{route('checkout-process', $item->id)}}" method="post">
                                 @csrf
                                 <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
                                     Присоединяйтесь сейчас
@@ -138,11 +126,11 @@
 @endsection
 
 @push('prepend-style')
-    <link rel="stylesheet" href="{{ url('frontend/libraries/xzoom/xzoom.css') }}">
+    <link rel="stylesheet" href="{{ url('libraries/xzoom/xzoom.css') }}">
 @endpush
 
 @push('addon-script')
-    <script src="{{ url('frontend/libraries/xzoom/xzoom.min.js') }}"></script>
+    <script src="{{ asset('libraries/xzoom/xzoom.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('.xzoom, .xzoom-gallery').xzoom({

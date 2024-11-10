@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DetailController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,63 +16,55 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/detail/{slug}', 'DetailController@index')->name('detail');
-
-//Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
-//
-//Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
-//
-//Route::get('/login', [LoginController::class, 'create'])->name('login');
-//Route::get('logout', [LoginController::class, 'logout'])->middleware('auth');
 Auth::routes();
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/detail', [DetailController::class, 'index'])->name('detail_list');
+Route::get('/detail/{slug}', [DetailController::class, 'show'])->name('detail_show');
+
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', 'UserDashboardController@index')
+    # Роуты пользователя
+    Route::get('user/edit/{id}', 'ProfileController@edit')
+        ->name('user-edit');
+
+    Route::post('user/edit/{id}', 'ProfileController@update')
+        ->name('user-update');
+
+    # Роуты доски
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])
         ->name('user-dashboard');
 
-    Route::get('/dashboard/detail/{id}', 'UserDashboardController@show')
-        ->name('detail-order');
+    Route::get('/dashboard/detail/{id}',  [UserDashboardController::class, 'show'])
+        ->name('user-dashboard-edit');
 
-    Route::get('dashboard/edit/{id}', 'ProfileController@edit')
-        ->name('edit');
+    # Роуты платежей
+    Route::post('/checkout/{id}', 'CheckoutController@process')
+        ->name('checkout-process');
 
-    Route::post('dashboard/edit/{id}', 'ProfileController@update')
-        ->name('update');
+    Route::get('/checkout/{id}', 'CheckoutController@index')
+        ->name('checkout-list');
+
+    Route::post('/checkout/create/{detail_id}', 'CheckoutController@create')
+        ->name('checkout-create');
+
+    Route::get('/checkout/remove/{detail_id}', 'CheckoutController@remove')
+        ->name('checkout-remove');
+
+    Route::get('/checkout/confirm/{id}', 'CheckoutController@success')
+        ->name('checkout-success');
 
 });
 
-Route::post('/checkout/{id}', 'CheckoutController@process')
-    ->name('checkout_process')
-    ->middleware(['auth']);
-
-Route::get('/checkout/{id}', 'CheckoutController@index')
-    ->name('checkout')
-    ->middleware(['auth']);
-
-Route::post('/checkout/create/{detail_id}', 'CheckoutController@create')
-    ->name('checkout_create')
-    ->middleware(['auth']);
-
-Route::get('/checkout/remove/{detail_id}', 'CheckoutController@remove')
-    ->name('checkout_remove')
-    ->middleware(['auth']);
-
-Route::get('/checkout/confirm/{id}', 'CheckoutController@success')
-    ->name('checkout_success')
-    ->middleware(['auth']);
-
 Route::prefix('admin')
     ->namespace('Admin')
-    ->middleware(['auth','admin'])
-    ->group(function(){
-        Route::get('/', 'DashboardController@index')
-            ->name('dashboard');
+    ->middleware(['auth', 'admin'])
+    ->group(function () {
+        Route::get('/', 'DashboardController@index')->name('admin_dashboard');
 
         Route::resource('travel-package', 'TravelPackageController');
         Route::resource('gallery', 'GalleryController');
         Route::resource('transaction', 'TransactionController');
-    });
+    })
+;
 

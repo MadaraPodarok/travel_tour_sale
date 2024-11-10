@@ -2,8 +2,8 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard')}}">
-        <div class="sidebar-brand-text mx-3">Панель Администратора?</div>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin_dashboard')}}">
+        <div class="sidebar-brand-text mx-3">Панель Администратора</div>
     </a>
 
     <!-- Divider -->
@@ -11,9 +11,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('dashboard')}}">
+        <a class="nav-link" href="{{ route('admin_dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Панель инструментов</span></a>
+            <span>Статистика</span></a>
     </li>
 
     <li class="nav-item">

@@ -8,6 +8,7 @@ body {
 .navbar-brand {
     img {
         max-height: 40px;
+        height: 40px;
     }
 }
 
@@ -36,7 +37,7 @@ body {
 .btn-login {
     background-color: #071C4D;
     color: #ffffff;
-
+    margin-left: 20px;
     &:hover {
         background-color: #2A53B4;
         color: #ffffff;
@@ -47,7 +48,7 @@ body {
 header {
     padding: 180px 0 165px;
     margin-top: -70px;
-    background-image: url('../images/Group\ 6.jpg');
+    background-image: url('../../public/images/Group_6.jpg');
     background-size: cover;
 
     h1, p {
@@ -232,6 +233,7 @@ header {
             font-weight: normal;
             font-size: 22px;
             color: #6e6e6e;
+            height: 40px;
         }
 
         hr {
@@ -295,7 +297,7 @@ header {
     .card-details {
         padding: 30px;
         border-radius: 11px;
-
+        height: 520px;
         h1 {
             font-size: 26px;
         }
@@ -436,16 +438,40 @@ header {
                 color: #fff;
             }
         }
+
+        .detail-about {
+            width: 100%;
+            max-width: 300px;
+            height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+
+            .about-truncate {
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* Количество строк */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .detail-description {
+            display: block;
+        }
     }
 
     .card-right {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         border-bottom: 0;
+        height: auto !important;
     }
 
     .features {
-        margin-top: 20px;
+        //margin-top: 20px;
 
         h3 {
         font-size: 18px;
@@ -471,11 +497,15 @@ header {
     }
 
     .gallery {
+        .xzoom-img {
+            width: 50px;
+            height: 50px;
+        }
         .xzoom-container {
             display: block;
+            pointer-events: none;
 
             .xzoom {
-                width: 100%;
                 box-shadow: none;
                 margin-bottom: 10px;
             }
@@ -536,5 +566,11 @@ header {
             color: #fff;
         }
     }
+}
+
+.user-info {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
 }
 

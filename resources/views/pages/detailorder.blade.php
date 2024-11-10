@@ -52,18 +52,16 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>ID</th>
-                                <th>Имя</th>
-                                <th>Национальность</th>
+                                <th>ФИО</th>
                                 <th>Виза</th>
                                 <th>Паспорт</th>
                             </tr>
                             @foreach ($item->details as $detail)
                             <tr>
                                 <td>{{ $detail->id }}</td>
-                                <td>{{ $detail->username }}</td>
-                                <td>{{ $detail->nationality }}</td>
+                                <td>{{ $detail->name }}</td>
                                 <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
-                                <td>{{ $detail->doe_passport }}</td>
+                                <td>{{ $detail->passport }}</td>
 
                             </tr>
 

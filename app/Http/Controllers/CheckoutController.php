@@ -17,15 +17,27 @@ use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
-    public function index(Request $request, $id)
+    /**
+     * Список платежей
+     * @param Request $request
+     * @param int $id
+     * @return Application|Factory|View
+     */
+    public function index(Request $request, int $id)
     {
-        $item = Transaction::with(['details','travel_package','user'])->findOrFail($id);
-        return view('pages.checkout',[
+        $item = Transaction::with(['details', 'travel_package', 'user'])->orderBy('id')->findOrFail($id);
+        return view('pages.checkout', [
             'item' => $item
         ]);
     }
 
-    public function process(Request $request, $id): RedirectResponse
+    /**
+     * Обработка платежа
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function process(Request $request, int $id): RedirectResponse
     {
         $travel_package = TravelPackage::findOrFail($id);
 
@@ -39,22 +51,27 @@ class CheckoutController extends Controller
 
         TransactionDetail::create([
             'transaction_id' => $transaction->id,
-            'username' => Auth::user()->name,
-            'nationality' => 'ID',
-            'is_visa' => false,
-            'doe_passport' => Carbon::now()->addYears(5)
+            'username' => Auth::user()->username,
+            'is_visa' => Auth::user()->is_visa,
+            'passport' => Auth::user()->passport
 
         ]);
 
-        return redirect()->Route('checkout',$transaction->id);
+        return redirect()->route('checkout-process', $transaction->id);
     }
 
-    public function create(Request $request, $id): RedirectResponse
+    /**
+     * Создание платежа - Кнопка Добавить
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function create(Request $request, int $id): RedirectResponse
     {
         $request->validate([
-            'username' => 'required|string|exists:users,name',
+            'username' => 'required|string|exists:users,username',
             'is_visa' => 'required|boolean',
-            'doe_passport' => 'required'
+            'passport' => 'required|string'
         ]);
 
         $data = $request->all();
@@ -64,8 +81,7 @@ class CheckoutController extends Controller
 
         $transaction = Transaction::with(['travel_package'])->find($id);
 
-        if($request->is_visa)
-        {
+        if ($request->is_visa) {
             $transaction->transaction_total += 190;
             $transaction->additional_visa += 190;
         }
@@ -74,21 +90,26 @@ class CheckoutController extends Controller
 
         $transaction->save();
 
-        return redirect()->route('checkout', $id);
+        return redirect()->route('checkout-list', $id);
 
     }
 
-    public function remove(Request $request, $detail_id): RedirectResponse
+    /**
+     * Удалить платеж
+     * @param Request $request
+     * @param int $detail_id
+     * @return RedirectResponse
+     */
+    public function remove(Request $request, int $detail_id): RedirectResponse
     {
         $item = TransactionDetail::findOrFail($detail_id);
 
-        $transaction = Transaction::with(['details','travel_package'])
+        $transaction = Transaction::with(['details', 'travel_package'])
             ->findOrFail($item->transaction_id);
 
-        if($item->is_visa)
-        {
+        if ($item->is_visa) {
             $transaction->transaction_total -= 190;
-            $transaction->additional_cisa -= 190;
+            $transaction->additional_visa -= 190;
         }
 
         $transaction->transaction_total -= $transaction->travel_package->price;
@@ -96,15 +117,16 @@ class CheckoutController extends Controller
         $transaction->save();
         $item->delete();
 
-        return redirect()->route('checkout', $item->transaction_id);
+        return redirect()->route('checkout-list', $item->transaction_id);
     }
 
     /**
+     * Обработка успешного платежа
      * @param Request $request
-     * @param $id
+     * @param int $id
      * @return Application|Factory|View
      */
-    public function success(Request $request, $id)
+    public function success(Request $request, int $id)
     {
         $transaction = Transaction::findOrFail($id);
         $transaction->transaction_status = 'PENDING';

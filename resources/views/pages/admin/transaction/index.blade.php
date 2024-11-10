@@ -18,21 +18,21 @@
                             <th>ID</th>
                             <th>Тур путевки</th>
                             <th>ФИО</th>
-                            <th>Виза</th>
-                            <th>Всего</th>
+                            <th>Доп Виза</th>
+                            <th>Цена</th>
                             <th>Статус</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($items as $item)
+                        @forelse($items as $key => $item)
                             <tr>
-                                <th>{{ $item->id }}</th>
+                                <th>{{ $key + 1 }}</th>
                                 <th>{{ $item->travel_package->title }}</th>
                                 <th>{{ $item->user->name }}</th>
                                 <th>{{ $item->additional_visa }}</th>
                                 <th>{{ $item->transaction_total }}</th>
-                                <th>{{ $item->transaction_status }}</th>
+                                <th>{{ $item->transaction_status_text }}</th>
                                 <td>
                                     <a href="{{ route('transaction.show', $item->id) }}"
                                         class="btn btn-primary">

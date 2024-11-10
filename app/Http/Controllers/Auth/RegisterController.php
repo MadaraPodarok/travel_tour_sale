@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -51,7 +51,14 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            //'username' => ['string', 'max:255', 'unique:users'],
+            'username' => [
+                'required',
+                'string',
+                'max:20',             // Максимальная длина 20 символов
+                'min:4',               // Минимальная длина 4 символа
+                'regex:/^[A-Za-z0-9._]+$/', // Разрешены буквы, цифры, точки и подчеркивания
+                'unique:users,username',    // Уникальность в таблице users
+            ],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'avatar' => ['mimes:jpeg,jpg,png,gif|max:10000']
@@ -69,7 +76,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name' => $data['name'],
-            //'username' => $data['username'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

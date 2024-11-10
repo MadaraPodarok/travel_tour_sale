@@ -25,9 +25,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($items as $item)
+                        @forelse($items as $key => $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->travel_package->title }}</td>
                                 <td>
                                     <img src="{{ Storage::url($item->image)}}" alt="" style="width: 150px" class="img-tumbnail" />

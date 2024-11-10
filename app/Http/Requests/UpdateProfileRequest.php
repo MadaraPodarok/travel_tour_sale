@@ -27,7 +27,13 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => [
+                'required',
+                'string',
+                'max:255',
+                'email',
+                Rule::unique('users')->ignore($this->route('id')), // Игнорируем текущего пользователя
+            ],
             'avatar' => ['mimes:jpeg,jpg,png,gif|max:10000']
         ];
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Тут что?
+Продажа туристических путевок
 @endsection
 
 
@@ -71,8 +71,7 @@
                             <div class="travel-country">{{ $item->location }}</div>
                             <div class="travel-location">{{ $item->title }}</div>
                             <div class="travel-button mt-auto">
-                                <a href="{{ route('detail', $item->slug) }}"
-                                    class="btn btn-travel-details px-4">Посмотреть детали</a>
+                                <a href="{{ route('detail_show', $item->slug) }}" class="btn btn-travel-details px-4">Посмотреть детали</a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +92,7 @@
                     </p>
                 </div>
                 <div class="col-md-8 text-center">
-                    <img src="frontend/images/partner/Group 7.png" alt="Логотип партнера" class="img-partner">
+                    <img src="images/partner/Group 7.png" alt="Логотип партнера" class="img-partner">
                 </div>
             </div>
         </div>
@@ -120,53 +119,45 @@
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="card card-testimonial text-center">
                         <div class="testimonial-content">
-                            <img src="frontend/images/testimonial/user_pic1.png" alt="user" class="mb-4 rounded-circle">
-                            <h3 class="mb-4"> Ангга Ризки </h3>
+                            <img src="images/testimonial/user_pic1.png" alt="user" class="mb-4 rounded-circle">
+                            <h3 class="mb-4">Самуэль</h3>
                             <p class="testimonial">
-                                “ Это было великолепно, и я мог
-                                не переставай говорить «ууууу»
-                                каждый момент
-                                Данкеееее “
+                                Это было великолепно! Я не мог перестать восклицать «ууууу» в каждый момент.
                             </p>
                         </div>
                         <hr />
                         <p class="trip-to mt-2">
-                            Поездка в Убуд
+                            Поездка в Мадагаскар
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="card card-testimonial text-center">
                         <div class="testimonial-content">
-                            <img src="frontend/images/testimonial/user_pic2.png" alt="user" class="mb-4 rounded-circle">
-                            <h3 class="mb-4"> Риана </h3>
+                            <img src="images/testimonial/user_pic2.png" alt="user" class="mb-4 rounded-circle">
+                            <h3 class="mb-4">Риана</h3>
                             <p class="testimonial">
-                                “ Поездка была потрясающей и
-                                Я увидел что-то прекрасное в
-                                тот остров, который делает меня
-                                хочу узнать больше “
+                                Поездка была потрясающей и я увидела что-то прекрасное
                             </p>
                         </div>
                         <hr />
                         <p class="trip-to mt-2">
-                            Поездка на Нуса Пениду
+                            Поездка на Великобританию
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="card card-testimonial text-center">
                         <div class="testimonial-content">
-                            <img src="frontend/images/testimonial/user_pic3.png" alt="user" class="mb-4 rounded-circle">
-                            <h3 class="mb-4"> Сабина </h3>
+                            <img src="images/testimonial/user_pic3.png" alt="user" class="mb-4 rounded-circle">
+                            <h3 class="mb-4">Сабина</h3>
                             <p class="testimonial">
-                                “ Мне нравилось, когда волны
-                                меня трясло сильнее — я был
-                                тоже напуган “
+                                Больше всего запомнилось, как вулкан начал извергаться — это было страшно!
                             </p>
                         </div>
                         <hr />
                         <p class="trip-to mt-2">
-                            Поездка на Каримун Яву
+                            Поездка в Исландию
                         </p>
                     </div>
                 </div>

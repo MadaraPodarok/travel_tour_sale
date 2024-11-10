@@ -12,10 +12,10 @@
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                Пользователь
+                                Заказы
                             </li>
                             <li class="breadcrumb-item active">
-                                Панель??
+                                Список заказов
                             </li>
                         </ol>
                     </nav>
@@ -33,13 +33,13 @@
                                 </ul>
                             </div>
                         @endif
-                        <h1>Ваш заказ</h1>
+                        <h1>Список ваших заказов</h1>
                         <div class="attendee">
                             <table class="table table-responsive-sm text-center">
                                 <thead>
                                     <tr>
                                         <td>ID</td>
-                                        <td>Имя</td>
+                                        <td>Наименование путевки</td>
                                         <td>Длительность</td>
                                         <td>Общая стоимость</td>
                                         <td>Статус</td>
@@ -47,15 +47,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($items as $item)
+                                    @forelse($dashboard_list as $item)
                                         <tr>
                                             <td class="align-middle">{{ $item->id }}</td>
                                             <td class="align-middle">{{ $item->travel_package->title }}</td>
                                             <td class="align-middle">{{ $item->travel_package->duration }}</td>
                                             <td class="align-middle">{{ $item->transaction_total }}</td>
-                                            <td class="align-middle">{{ $item->transaction_status }}</td>
+                                            <td class="align-middle">{{ $item->transaction_status_text }}</td>
                                             <td>
-                                                <a href="{{ route('detail-order', $item->id) }}"
+                                                <a href="{{ route('checkout-process', $item->id) }}"
                                                     class="btn btn-primary">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
@@ -64,7 +64,7 @@
                                     @empty
                                         <tr>
                                             <td colspan="6" class="text-center">
-                                                У вас еще нет заказа
+                                                У вас еще нет заказов
                                             </td>
                                         </tr>
                                     @endforelse
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="join-container">
-                        <a href="{{ Route('edit',$id) }}"
+                        <a href="{{ Route('user-edit',$id) }}"
                             class="btn btn-block btn-join-now mt-3 py-2">
                             Редактировать
                         </a>
@@ -110,19 +110,18 @@
 @endsection
 
 @push('prepend-style')
-    <link rel="stylesheet"
-        href="{{ url('/frontend/libraries/combined/css/gijgo.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/libraries/combined/css/gijgo.min.css') }}">
 @endpush
 
 @push('addon-script')
-    <script src="{{ url('/frontend/libraries/combined/js/gijgo.min.js') }}"></script>
+    <script src="{{ asset('/libraries/combined/js/gijgo.min.js') }}"></script>
     <script>
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
             locale: 'ru-ru',
             uiLibrary: 'bootstrap4',
             icons: {
-                rightIcon: '<img src="{{ url('frontend/images/icon/ic_doe.png') }}" />'
+                rightIcon: '<img src="{{ url('images/icon/ic_doe.png') }}" />'
             }
         })
 

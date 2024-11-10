@@ -27,7 +27,7 @@
                     <td>{{ $item->id }}</td>
                 </tr>
                 <tr>
-                    <th>Туристические путевки</th>
+                    <th>Название путевки</th>
                     <td>{{ $item->travel_package->title }}</td>
                 </tr>
                 <tr>
@@ -39,12 +39,12 @@
                     <td>{{ $item->additional_visa }}</td>
                 </tr>
                 <tr>
-                    <th>Всего транзакций</th>
+                    <th>Цена</th>
                     <td>{{ $item->transaction_total }}</td>
                 </tr>
                 <tr>
                     <th>Статус транзакции</th>
-                    <td>{{ $item->transaction_status }}</td>
+                    <td>{{ $item->status_text }}</td>
                 </tr>
                 <tr>
                     <th>Покупка</th>
@@ -52,18 +52,16 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>ID</th>
-                                <th>ФИО</th>
-                                <th>Национальность</th>
+                                <th>Логин</th>
                                 <th>Виза</th>
                                 <th>Паспорт</th>
                             </tr>
-                            @foreach ($item->details as $detail)
+                            @foreach ($item->details as $key => $detail)
                             <tr>
-                                <td>{{ $detail->id }}</td>
+                                <td>{{ $key + 1 }}</td>
                                 <td>{{ $detail->username }}</td>
-                                <td>{{ $detail->nationality }}</td>
-                                <td>{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
-                                <td>{{ $detail->doe_passport }}</td>
+                                <td>{{ $detail->is_visa ? '30 дней' : 'Отсутствует' }}</td>
+                                <td>{{ $detail->passport }}</td>
 
                             </tr>
 

@@ -20,7 +20,7 @@ class TravelPackageController extends Controller
      */
     public function index()
     {
-        $items = TravelPackage::all();
+        $items = TravelPackage::orderBy('id', 'asc')->get();
 
         return view('pages.admin.travel-package.index', [
             'items' => $items

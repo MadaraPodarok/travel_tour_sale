@@ -15,18 +15,17 @@ class CreateTravelPackagesTable extends Migration
     {
         Schema::create('travel_packages', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
-            $table->string('title');
-            $table->string('location');
-            $table->longText('about');
-            $table->string('featured_event');
-            $table->string('language');
-            $table->string('foods');
-            $table->date('departure_date');
-            $table->string('duration');
-            $table->string('type');
-            $table->integer('price');
-            $table->softDeletes();
+            $table->string('slug')->nullable()->comment('Наименование путевки');
+            $table->string('title')->nullable();
+            $table->string('location')->nullable();
+            $table->longText('about')->nullable();
+            $table->string('featured_event')->nullable();
+            $table->string('language')->nullable();
+            $table->string('foods')->nullable();
+            $table->date('departure_date')->nullable();
+            $table->string('duration')->nullable();
+            $table->integer('price')->nullable();
+//            $table->softDeletes();
             $table->timestamps();
         });
     }

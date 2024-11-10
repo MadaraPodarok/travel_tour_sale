@@ -6,7 +6,7 @@
 <main>
     <div class="section-success d-flex align-items-center">
         <div class="col text-center">
-            <img src="{{url('/frontend/images/icon/ic_mail.png')}}" alt="">
+            <img src="{{url('/images/icon/ic_mail.png')}}" alt="">
             <h1>Ура! Успех!</h1>
             <p>Мы отправили вам электронное письмо с инструкциями по поездке
                 <br>

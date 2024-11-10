@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('additional_visa')->nullable();
             $table->integer('transaction_total')->nullable();
             $table->integer('transaction_status')->nullable();
-            $table->softDeletes()->nullable();
+//            $table->softDeletes();
             $table->timestamps();
         });
     }

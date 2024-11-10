@@ -26,7 +26,6 @@
                 <div class="form-group">
                     <label for="travel_packages_id">Туристические путевки</label>
                     <select name="travel_packages_id" class="form-control">
-                        <option value="">Выбрать туристические путевки</option>
                         @foreach($travel_packages as $travel_package)
                             <option value="{{ $travel_package->id }}">
                                 {{ $travel_package->title }}

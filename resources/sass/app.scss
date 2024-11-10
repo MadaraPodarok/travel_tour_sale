@@ -1,8 +1,15 @@
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
+@import '../scss/sb-admin-2';
+
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
+@import '../vendor/bootstrap/scss/bootstrap';
+
+@import 'main';
+

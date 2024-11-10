@@ -27,14 +27,12 @@
                 <div class="form-group">
                     <label for="transaction_status">Status</label>
                     <select name="transaction_status" required class="form-control">
-                        <option value="{{ $item->transaction_status }}">
-                            Не меняй? ({{ $item->transaction_status }})
-                        </option>
-                        <option value="IN_CART">В корзине</option>
-                        <option value="PENDING">В ожидании</option>
-                        <option value="SUCCESS">Успех?</option>
-                        <option value="CANCEL">Отменен</option>
-                        <option value="FAILED">Неуспешный</option>
+                        <option disabled>Выберите статус</option>
+                        <option value="IN_CART" {{ $item->transaction_status === 0 ? 'selected' : '' }}>В корзине</option>
+                        <option value="PENDING" {{ $item->transaction_status === 1 ? 'selected' : '' }}>В ожидании</option>
+                        <option value="SUCCESS" {{ $item->transaction_status === 2 ? 'selected' : '' }}>Успех</option>
+                        <option value="CANCEL" {{ $item->transaction_status === 3 ? 'selected' : '' }}>Отменен</option>
+                        <option value="FAILED" {{ $item->transaction_status === 4 ? 'selected' : '' }}>Неуспешный</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Сохранить</button>

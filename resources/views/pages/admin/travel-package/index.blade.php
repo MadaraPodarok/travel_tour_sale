@@ -21,9 +21,7 @@
                             <th>ID</th>
                             <th>Заголовок</th>
                             <th>Местоположение</th>
-                            <th>Тип</th>
                             <th>Дата отправления</th>
-                            <th>Тип</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
@@ -33,9 +31,7 @@
                                 <th>{{ $item->id }}</th>
                                 <th>{{ $item->title }}</th>
                                 <th>{{ $item->location }}</th>
-                                <th>{{ $item->type }}</th>
                                 <th>{{ $item->departure_date }}</th>
-                                <th>{{ $item->type }}</th>
                                 <td>
                                     <a href="{{ route('travel-package.edit', $item->id) }}"
                                         class="btn btn-info">

@@ -25,11 +25,11 @@
                 @method('PUT')
                 @csrf
                 <div class="form-group">
-                    <label for="travel_packages_id">Туристические путевки</label>
+                    <label for="travel_packages_id">Название путевки</label>
                     <select name="travel_packages_id" class="form-control">
-                        <option value="{{ $item->travel_packages_id }}">Не менять?</option>
                         @foreach($travel_packages as $travel_package)
-                            <option value="{{ $travel_package->id }}">
+                            <option value="{{ $travel_package->id }}"
+                                {{ $travel_package->id == $item->travel_packages_id ? 'selected' : '' }}>
                                 {{ $travel_package->title }}
                             </option>
                         @endforeach
@@ -38,6 +38,13 @@
 
                 <div class="form-group">
                     <label for="image">Фото</label>
+                    <!-- Отображение текущего изображения, если оно существует -->
+                    @if($item->image)
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="Текущее фото" style="max-width: 150px;">
+                        </div>
+                    @endif
+                    <!-- Поле загрузки нового изображения -->
                     <input type="file" name="image" placeholder="Image" class="form-control">
                 </div>
 

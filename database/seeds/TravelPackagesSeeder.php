@@ -25,7 +25,6 @@ class TravelPackagesSeeder extends Seeder
             'foods' => $faker->words(3, true),
             'departure_date' => $faker->dateTimeBetween('+1 week', '+6 months')->format('Y-m-d'),
             'duration' => $faker->numberBetween(3, 14) . ' days',
-            'type' => $faker->randomElement(['Adventure', 'Relaxation', 'Cultural', 'Nature']),
             'price' => $faker->randomNumber(4),
         ]);
     }

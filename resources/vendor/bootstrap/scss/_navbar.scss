@@ -40,17 +40,19 @@
 // Used for brand, project, or site names.
 
 .navbar-brand {
-  display: inline-block;
-  padding-top: $navbar-brand-padding-y;
-  padding-bottom: $navbar-brand-padding-y;
-  margin-right: $navbar-padding-x;
-  @include font-size($navbar-brand-font-size);
-  line-height: inherit;
-  white-space: nowrap;
+    display: inline-block;
+    padding-top: $navbar-brand-padding-y;
+    padding-bottom: $navbar-brand-padding-y;
+    margin-right: $navbar-padding-x;
+    @include font-size($navbar-brand-font-size);
+    line-height: inherit;
+    white-space: nowrap;
 
-  @include hover-focus {
-    text-decoration: none;
-  }
+    @include hover-focus {
+        text-decoration: none;
+    }
+
+    width: 200px;
 }
 
 
@@ -97,11 +99,14 @@
 // the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
 // on the `.navbar` parent.
 .navbar-collapse {
-  flex-basis: 100%;
-  flex-grow: 1;
-  // For always expanded or extra full navbars, ensure content aligns itself
-  // properly vertically. Can be easily overridden with flex utilities.
-  align-items: center;
+    flex-basis: 100%;
+    flex-grow: 1;
+    // For always expanded or extra full navbars, ensure content aligns itself
+    // properly vertically. Can be easily overridden with flex utilities.
+    align-items: center;
+
+    width: 80%;
+    margin-left: 16px;
 }
 
 // Button for toggling the navbar when in its collapsed state

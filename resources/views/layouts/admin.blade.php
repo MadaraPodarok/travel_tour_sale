@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Панель администратора?</title>
+    <title>Панель администратора</title>
 
     @include('includes.admin.style')
 
