@@ -9,7 +9,7 @@
         <ul class="navbar-nav mr-auto d-none d-lg-block">
             <li>
                 <span class="text-muted">
-                    | &nbsp; За пределами исследователя мира
+                    | &nbsp; За пределами мира
                 </span>
             </li>
         </ul>

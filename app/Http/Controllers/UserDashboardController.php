@@ -16,7 +16,7 @@ use Illuminate\View\View;
 class UserDashboardController extends Controller
 {
     /**
-     * Список
+     * Список ваших заказов
      * @param Request $request
      * @return Application|Factory|View
      */
@@ -24,16 +24,15 @@ class UserDashboardController extends Controller
     {
         $id = Auth::user()->id;
         $avatar = Auth::user()->avatar;
-        $items = Transaction::with(['details','travel_package','user'])
-            ->where('users_id',$id)
+        $items = Transaction::with(['details', 'travel_package', 'user'])
+            ->where('users_id', $id)
             ->orderBy('id')
             ->get()
             ->each(function ($item) {
                 $item->transaction_status_text = $item->status_text;
-            })
-        ;
+            });
 
-        $details = User::where('id',$id)->first();
+        $details = User::where('id', $id)->first();
 
         return view('pages.dashboard', [
             'dashboard_list' => $items,
@@ -43,14 +42,19 @@ class UserDashboardController extends Controller
         ]);
     }
 
+    /**
+     * Данные заказа
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function show($id)
     {
         $item = Transaction::with([
-            'details','travel_package','user'
+            'details', 'travel_package', 'user'
         ])->findOrFail($id);
 
-        return view('pages.detailorder',[
-            'item'=> $item
+        return view('pages.detailorder', [
+            'item' => $item
         ]);
     }
 }

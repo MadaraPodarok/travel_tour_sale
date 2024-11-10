@@ -1,6 +1,6 @@
 @extends('layouts.checkout')
 
-@section('title','Checkout')
+@section('title','Оплата путевки')
 
 @section('content')
 <main>
@@ -12,12 +12,12 @@
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('detail_show', $item->travel_package->slug) }}" class="nav-link">
-                                    {{$item->travel_package->title}}
-                                </a>
+                                <a href="{{route('detail_list')}}">Туристические путевки</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{route('detail_list')}}" class="nav-link">Туристические путевки</a>
+                                <a href="{{ route('detail_show', $item->travel_package->slug) }}" >
+                                    {{$item->travel_package->title}}
+                                </a>
                             </li>
                             <li class="breadcrumb-item active">
                                 <a>Данные платежа</a>
@@ -130,28 +130,21 @@
                         <h2>Информация о кассе</h2>
                         <table class="trip-information">
                             <tr>
-                                <th width="50%">Участники</th>
-                                <td width="50%" class="text-right">{{ $item->details->count() }} Человек</td>
+                                <th>Участники</th>
+                                <td class="text-right">{{ $item->details->count() }} человек(а)</td>
                             </tr>
                             <tr>
-                                <th width="50%">Цена визы</th>
-                                <td width="50%" class="text-right">$ {{ $item->additional_visa }},00</td>
+                                <th>Цена визы</th>
+                                <td class="text-right">{{ $item->additional_visa }},00 руб</td>
                             </tr>
                             <tr>
-                                <th width="50%">Цена поездки</th>
-                                <td width="50%" class="text-right">$ {{ $item->travel_package->price }},00/Человек
+                                <th>Цена поездки</th>
+                                <td class="text-right">{{ $item->travel_package->price }},00 руб
                                 </td>
                             </tr>
                             <tr>
-                                <th width="50%">Общая сумма путевки</th>
-                                <td width="50%" class="text-right">$ {{ $item->transaction_total }},00</td>
-                            </tr>
-                            <tr>
-                                <th width="50%">Общая сумма путевки???</th>
-                                <td width="50%" class="text-right">
-                                    <span class="text-blue">$ {{ $item->transaction_total }},</span>
-                                    <span class="text-orange">{{ mt_rand(0,99) }}</span>
-                                </td>
+                                <th>Общая сумма путевки</th>
+                                <td class="text-right">{{ $item->transaction_total }},00 руб</td>
                             </tr>
                         </table>
                         <hr>
@@ -208,8 +201,7 @@
 @endsection
 
 @push('prepend-style')
-    <link rel="stylesheet"
-        href="{{ url('/libraries/combined/css/gijgo.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/libraries/combined/css/gijgo.min.css') }}">
 @endpush
 
 @push('addon-script')

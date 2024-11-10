@@ -11,11 +11,8 @@
                     <div class="col p-0">
                         <nav>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    Туристические путевки
-                                </li>
                                 <li class="breadcrumb-item active">
-                                    Список тур путевок
+                                    Туристические путевки
                                 </li>
                             </ol>
                         </nav>

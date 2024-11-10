@@ -11,9 +11,6 @@
                 <div class="col p-0">
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                Заказы
-                            </li>
                             <li class="breadcrumb-item active">
                                 Список заказов
                             </li>
@@ -55,7 +52,7 @@
                                             <td class="align-middle">{{ $item->transaction_total }}</td>
                                             <td class="align-middle">{{ $item->transaction_status_text }}</td>
                                             <td>
-                                                <a href="{{ route('checkout-process', $item->id) }}"
+                                                <a href="{{ route('user-dashboard-edit', $item->id) }}"
                                                     class="btn btn-primary">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
