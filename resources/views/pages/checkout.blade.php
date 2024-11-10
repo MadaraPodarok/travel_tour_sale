@@ -134,7 +134,7 @@
                                 <td width="50%" class="text-right">{{ $item->details->count() }} Человек</td>
                             </tr>
                             <tr>
-                                <th width="50%">Дополнительная ВИЗА</th>
+                                <th width="50%">Цена визы</th>
                                 <td width="50%" class="text-right">$ {{ $item->additional_visa }},00</td>
                             </tr>
                             <tr>
@@ -143,11 +143,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th width="50%">Промежуточный итог</th>
+                                <th width="50%">Общая сумма путевки</th>
                                 <td width="50%" class="text-right">$ {{ $item->transaction_total }},00</td>
                             </tr>
                             <tr>
-                                <th width="50%">Всего(+Уникальные)</th>
+                                <th width="50%">Общая сумма путевки???</th>
                                 <td width="50%" class="text-right">
                                     <span class="text-blue">$ {{ $item->transaction_total }},</span>
                                     <span class="text-orange">{{ mt_rand(0,99) }}</span>

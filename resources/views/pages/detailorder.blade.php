@@ -35,11 +35,11 @@
                     <td>{{ $item->user->name }}</td>
                 </tr>
                 <tr>
-                    <th>Дополнительная виза</th>
+                    <th>Цена визы</th>
                     <td>{{ $item->additional_visa }}</td>
                 </tr>
                 <tr>
-                    <th>Всего транзакций</th>
+                    <th>Общая сумма путевки</th>
                     <td>{{ $item->transaction_total }}</td>
                 </tr>
                 <tr>

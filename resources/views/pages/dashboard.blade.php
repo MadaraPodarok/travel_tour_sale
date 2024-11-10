@@ -39,17 +39,17 @@
                                 <thead>
                                     <tr>
                                         <td>ID</td>
-                                        <td>Наименование путевки</td>
+                                        <td>Наименование тура</td>
                                         <td>Длительность</td>
-                                        <td>Общая стоимость</td>
-                                        <td>Статус</td>
+                                        <td>Общая сумма путевки</td>
+                                        <td>Статус транзакции</td>
                                         <td>Действия</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($dashboard_list as $item)
+                                    @forelse($dashboard_list as $key => $item)
                                         <tr>
-                                            <td class="align-middle">{{ $item->id }}</td>
+                                            <td class="align-middle">{{ $key + 1 }}</td>
                                             <td class="align-middle">{{ $item->travel_package->title }}</td>
                                             <td class="align-middle">{{ $item->travel_package->duration }}</td>
                                             <td class="align-middle">{{ $item->transaction_total }}</td>

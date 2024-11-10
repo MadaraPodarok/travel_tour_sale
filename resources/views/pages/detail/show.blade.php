@@ -93,12 +93,12 @@
                                 <td width="50%" class="text-right">{{\Carbon\Carbon::create($item->date_of_departure)->format('F n, Y')}}</td>
                             </tr>
                             <tr>
-                                <th width="50%">Продолжительность</th>
+                                <th width="50%">Длительность тура</th>
                                 <td width="50%" class="text-right">{{$item->duration}}</td>
                             </tr>
                             <tr>
                                 <th width="50%">Цена</th>
-                                <td width="50%" class="text-right">{{$item->price}},00 / Person</td>
+                                <td width="50%" class="text-right">{{$item->price}},00 / Человек</td>
                             </tr>
                         </table>
                     </div>
