@@ -44,10 +44,10 @@ class UserDashboardController extends Controller
 
     /**
      * Данные заказа
-     * @param $id
+     * @param int $id
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(int $id)
     {
         $item = Transaction::with([
             'details', 'travel_package', 'user'

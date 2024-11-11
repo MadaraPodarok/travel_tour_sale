@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TravelPackageRequest;
 use App\TravelPackage;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -21,6 +22,11 @@ class TravelPackageController extends Controller
     public function index()
     {
         $items = TravelPackage::orderBy('id', 'asc')->get();
+
+        // Форматируем дату перед отправкой в представление
+        foreach ($items as $item) {
+            $item->departure_date = Carbon::parse($item->departure_date)->format('d.m.Y');
+        }
 
         return view('pages.admin.travel-package.index', [
             'items' => $items
@@ -86,7 +92,7 @@ class TravelPackageController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(TravelPackageRequest $request, int $id)
+    public function update(TravelPackageRequest $request, int $id): RedirectResponse
     {
         $data = $request -> all();
         $data['slug'] = Str::slug($request->title);

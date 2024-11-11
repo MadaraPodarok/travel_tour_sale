@@ -14,7 +14,7 @@ use Illuminate\View\View;
 class GalleryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Фото тур путевок
      *
      * @return Application|Factory|View
      */
@@ -62,7 +62,7 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }

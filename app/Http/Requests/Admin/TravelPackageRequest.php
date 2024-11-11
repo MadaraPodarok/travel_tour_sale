@@ -21,7 +21,7 @@ class TravelPackageRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => 'required|max:255',
@@ -30,7 +30,7 @@ class TravelPackageRequest extends FormRequest
             'featured_event' => 'required|max:255',
             'language' => 'required|max:255',
             'foods' => 'required|max:255',
-            'departure_date' => 'required|date',
+            'departure_date' => 'required|date|after:today|before:' . now()->addYears(10)->format('Y-m-d'),
             'duration' => 'required|max:255',
             'price' => 'required|integer'
         ];
